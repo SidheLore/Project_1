@@ -9,12 +9,20 @@
     <link rel="stylesheet" href="./assets/css/bulma.min.css">
 </head>
 <body>
-    <header>
-        <h1>
+    <header class="has-background-white px-4 py-5">
+        <h1 class="title is-size-1">
             <a href="./index.html">Simple Shopper</a>
         </h1>
-        <nav>
-            <ul>
+        <nav class="navbar has-shadow">
+            <!-- logo -->
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="./assets/images/" alt="simple shopper logo" style="max-height: 65 px" class="px-2 py-2"> 
+                </a>
+            </div>
+            <!-- nav bar -->
+            <div class="navbar-menu">
+            <ul class="navbar-end">
                 <li>
                     <a href="./index.html">Home</a>
                 </li>
@@ -25,13 +33,15 @@
                     <a href="./grocery-list.html">Grocery List</a>
                 </li>
             </ul>
+            </div>
         </nav>
-        <section class="section banner">
-            <h2>
+        </header>
+        <section class="section">
+            <h2 class="section-title is-size-4 has-text-centered">
                 Grocery List
             </h2>
         </section>
-        <section class="section ingredients-list">
+        <section class="section">
             <p>
                 List of ingredients, Text text text, delete button next to each ingredient, ability to change quantity, text text text
             </p>
