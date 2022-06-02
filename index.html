@@ -1,78 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Shopper</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/bulma.min.css">
-</head>
-<body>
-    <header>
-        <h1>
-            <a href="./index.html">Simple Shopper</a>
-        </h1>
-        <nav>
-            <ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple Shopper</title>
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <link rel="stylesheet" href="./assets/css/bulma.min.css">
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="./index.html">Simple Shopper</a>
+            </h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="./index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="./my-meals.html">My Meals</a>
+                    </li>
+                    <li>
+                        <a href="./grocery-list.html">Grocery List</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    <section class="search-steps">
+            <h2 class="section-title">
+                Search for a Meal
+            </h2>
+            <h3 class="steps"> Steps</h3>
+            <ol>
                 <li>
-                    <a href="./index.html">Home</a>
+                    Text Text Text
                 </li>
                 <li>
-                    <a href="./my-meals.html">My Meals</a>
+                    Text Text Text
                 </li>
                 <li>
-                    <a href="./grocery-list.html">Grocery List</a>
+                    Text Text Text
                 </li>
-            </ul>
-        </nav>
-    </header>
-  <section class="search-steps">
-        <h2 class="section-title">
-            Search for a Meal
-        </h2>
-        <h3 class="steps"> Steps</h3>
-        <ol>
-            <li>
-                Text Text Text
-            </li>
-            <li>
-                Text Text Text
-            </li>
-            <li>
-                Text Text Text
-            </li>
-        </ol> 
-    </section>
-      <section class="section">
-        <div class="columns">
-            <form class="box column is-one-quarter" id="search">
-                <div class="field">
-                    <label class="label">Search by</label>
-                    <div class="select">
-                        <select id="type-select" >
-                            <option value="category">category</option>
-                            <option value="main-ingredient">main ingredient</option>
-                            <option value="area">area</option>
-                        </select>
+            </ol> 
+        </section>
+        <section class="section search-section">
+            <div class="columns">
+                <form class="column box is-one-quarter" id="search">
+                    <div class="field">
+                        <label class="label">Search by</label>
+                        <div class="select">
+                            <select id="type-select">
+                                <option value="category">category</option>
+                                <option value="main-ingredient">main ingredient</option>
+                                <option value="area">area</option>
+                            </select>
+                        </div>
                     </div>
+                    <div class="field">
+                    <label class="label">Enter a search term:</label>
+                    <div class="control">
+                        <input id='search-input' class="input" type="text" placeholder="e.g. seafood, vegetarian, etc">
+                    </div>
+                    </div>
+                    <button class="button is-primary" type="submit">Search</button>
+                </form>
+                <div class="column box mx-2 is-3-quarters">
+                    <ul id="meal-list">
+
+                    </ul>
                 </div>
-                <div class="field">
-                  <label class="label">Enter a search term:</label>
-                  <div class="control">
-                    <input id='search-input' class="input" type="text" placeholder="e.g. seafood, vegetarian, etc">
-                  </div>
+            </div>
+            
+        </section>
+        <footer class="section">
+            <div>
+                © 2022 Simple Shopper Group
+            </div>
+        </footer>
+
+        <script type="text/javascript" src="./assets/js/all.js"></script>
+        <script type="text/javascript" src="./assets/js/script.js"></script>
+
+
+
+    <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+        
+        <div class="modal-content">
+            <div class="box">
+                <div class="meal-name">
+                    <figure class="image is-128x128 meal-image">
+                        <img src="" id="modal-img">
+                    </figure>
+                    <p id="meal-desc" class="title is-4"></p>
                 </div>
-                <button class="button is-primary" type="submit">Search</button>
-              </form>
+                <div class="meal-info">
+                    <br>
+                    <p><strong>Instructions: </strong></p>
+                    <p id="meal-ins"></p>
+                </div>
+            </div>
         </div>
-    </section>
-    <footer class="section">
-        <div>
-            © 2022 Simple Shopper Group
+        
+        <button class="modal-close is-large" aria-label="close"></button>
         </div>
-    </footer>
-    <script type="text/javascript" src="./assets/js/all.js"></script>
-    <script type="text/javascript" src="./assets/js/script.js"></script>
-</body>
+    </body>
 </html>

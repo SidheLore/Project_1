@@ -1,0 +1,19 @@
+.list-btn {
+    margin: 0 4px;
+}
+.meal-item {
+    margin: 12px 0;
+}
+#modal-img {
+    border: 1px solid black;
+    margin: 8px;
+}
+
+.meal-name {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+#search {
+    height: 300px;
+}
