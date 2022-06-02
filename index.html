@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Shopper</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/bulma.min.css">
 </head>
 <body>
     <header>
@@ -26,7 +27,7 @@
             </ul>
         </nav>
     </header>
-    <section class="search-steps">
+  <section class="search-steps">
         <h2 class="section-title">
             Search for a Meal
         </h2>
@@ -45,12 +46,36 @@
     </section>
     <section class="search-box">
         <label for="search">Search for a Meal<br></label>
-        <input type="search" id="" name="">
+        <input type="search" id="" name=""
+      <section class="section">
+        <div class="columns">
+            <form class="box column is-one-quarter" id="search">
+                <div class="field">
+                    <label class="label">Search by</label>
+                    <div class="select">
+                        <select id="type-select" >
+                            <option value="category">category</option>
+                            <option value="main-ingredient">main ingredient</option>
+                            <option value="area">area</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                  <label class="label">Enter a search term:</label>
+                  <div class="control">
+                    <input id='search-input' class="input" type="text" placeholder="e.g. seafood, vegetarian, etc">
+                  </div>
+                </div>
+                <button class="button is-primary" type="submit">Search</button>
+              </form>
+        </div>
     </section>
-    <footer>
+    <footer class="section">
         <div>
             © 2022 Simple Shopper Group
         </div>
     </footer>
+    <script type="text/javascript" src="./assets/js/all.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 </html>
