@@ -13,8 +13,15 @@
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                   <a class="navbar-item" href="index.html">
-                    <h1>Simple Shopper</h1>
+                    <h1 class="title is-size-1">Simple Shopper</h1>
                   </a>
+                </div>
+
+                <!-- logo -->
+                <div class="navbar-brand">
+                    <a class="navbar-item">
+                        <img src="" alt="simple shopper logo" style="max-height: 65 px" class="px-2 py-2">
+                    </a>
                 </div>
               
                 <div id="navbarBasicExample" class="navbar-menu is-active">
@@ -22,7 +29,6 @@
                     <a class="navbar-item" href="index.html">
                       Home
                     </a>
-              
                     <a class="navbar-item" href="my-meals.html">
                       My Meals
                     </a>
@@ -52,7 +58,6 @@
                     View resulting meals and add your favorites to My Meals!
                 </p>
             </div>
-        </header>
         <section class="section search-section">
             <div class="box">
                 <h2 class="section-title is-size-4 has-text-centered px-4 py-2">
@@ -78,7 +83,7 @@
                             </div>
                             </div>
                             <button class="button is-primary" type="submit">Search</button>
-                            <button class="button is-secondary" type="button">Clear</button>
+                            <button class="button is-secondary" type="button" onclick="clearSearch()">Clear</button>
                         </form>
                     </div>
                     <div class="column is-two-thirds mx-2">
@@ -88,14 +93,8 @@
                     </div>
                 </div>
             </div>
-
         </section>
-        <footer class="section has-background-white">
-
-            
-        </section>
-        <footer class="section">
-
+        <footer class="px-4 py-2">
             <div>
                 © 2022 Simple Shopper Group
             </div>
@@ -128,7 +127,7 @@
         </div>
         
         <button class="modal-close is-large" aria-label="close"></button>
-        </div>
+    </div>
 
 
     <script type="text/javascript" src="./assets/js/all.js"></script>

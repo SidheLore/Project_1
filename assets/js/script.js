@@ -1,7 +1,7 @@
 var searchInputEl = document.getElementById('search-input')
 var selectTypeEl = document.getElementById('type-select')
 var searchForm = document.getElementById('search')
-
+myMeals = []
 var getMeals = function(input, type) {
     if (type == 'category') {
         url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + input;
@@ -20,31 +20,38 @@ var getMeals = function(input, type) {
                     displayResults(data.meals)
                 }
                 else {
-                    showError("No results found.")
+                    displayMessage("No results found.", "is-danger")
                 }
             })
         }
     })
     .catch(function(error) {
-        showError(error)
-})
-}
+        displayMessage(error, "is-danger")
+})}
+
+
 var displayResults = function(mealsArr) {
     for (var i = 0; i<mealsArr.length; i++) {
         listMeal(mealsArr[i])
     }
 }
-var showError = function(message) {
+
+
+var displayMessage = function(message, type) {
     var errorEl = document.createElement("div");
+    errorEl.classList = "notification " + type;
     errorEl.textContent = message
     var deleteBtn = document.createElement('button')
     deleteBtn.className = 'delete'
-    deleteBtn.id = 'notif-delete'
+    deleteBtn.addEventListener("click", function(event) {
+        var notif = event.target.closest('.notification')
+        notif.remove()
+    })
     errorEl.appendChild(deleteBtn)
-    deleteBtn.addEventListener("click", errorEl.remove())
     document.getElementById("home").appendChild(errorEl);
-    errorEl.classList.add("notication", "is-danger")
 }
+
+
 var listMeal = function(meal) {
     var mealEl = document.createElement('li');
     mealEl.className = 'meal-item'
@@ -60,6 +67,29 @@ var listMeal = function(meal) {
         event.stopPropagation()
         event.preventDefault()
         findMealById(viewBtn.value)
+    })
+    addBtn.addEventListener('click', function(event) {
+        event.stopPropagation()
+        event.preventDefault()
+        var storedMeals = localStorage.getItem('mymeals');
+        if (!storedMeals) {
+            myMeals.push(meal)
+            localStorage.setItem('mymeals', JSON.stringify(myMeals))
+            displayMessage(meal.strMeal + " was added to My Meals!", "is-success")
+        }
+        else {
+            storedMeals = JSON.parse(storedMeals)
+            for (var i = 0; i<storedMeals.length; i++) {
+                if (storedMeals[i].strMeal == meal.strMeal) {
+                    displayMessage(meal.strMeal + ' is already a part of My Meals!', 'is-danger')
+                }
+                else { 
+                    storedMeals.push(meal)
+                    localStorage.setItem('mymeals', JSON.stringify(storedMeals))
+                    displayMessage(meal.strMeal + " was added to My Meals!", "is-success")
+                }
+            }
+        }
     })
 
     viewBtn.textContent = 'View Meal';
@@ -90,8 +120,10 @@ var findMealById = function(mealID) {
 
 searchForm.addEventListener("submit", function(event) {
     event.preventDefault()
+    clearSearch()
     getMeals(searchInputEl.value, selectTypeEl.value)
 })
+
 
 var fillModal = function(meal) {
     mealImg = meal.strMealThumb
@@ -104,6 +136,8 @@ var fillModal = function(meal) {
     document.getElementById('meal-ins').textContent = mealIns
     initModal()
 }
+
+
 selectTypeEl.addEventListener("change", function() {
     type = selectTypeEl.value;
     if (type == 'area') {
@@ -117,6 +151,7 @@ selectTypeEl.addEventListener("change", function() {
     }
 })
 
+
 var initModal = function() {
     var background = document.querySelector('.modal-background')
     var modalClose = document.querySelector('.modal-close')
@@ -129,6 +164,13 @@ var initModal = function() {
     background.addEventListener("click", function() {
         modal.classList.remove('is-active')
     })
+}
+
+var clearSearch = function() {
+    var mealList = document.querySelector('#meal-list')
+    while (mealList.firstChild) {
+        mealList.removeChild(mealList.firstChild);
+    }
 }
 
 
