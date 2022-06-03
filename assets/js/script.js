@@ -1,4 +1,3 @@
-// Types = 
 var searchInputEl = document.getElementById('search-input')
 var selectTypeEl = document.getElementById('type-select')
 var searchForm = document.getElementById('search')
@@ -105,6 +104,7 @@ selectTypeEl.addEventListener("change", function() {
         searchInputEl.setAttribute('placeholder', 'e.g. chicken, broccoli, etc.')
     }
 })
+
 var initModal = function() {
     var background = document.querySelector('.modal-background')
     var modalClose = document.querySelector('.modal-close')
