@@ -16,22 +16,34 @@ var getMeals = function(input, type) {
     .then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
-                console.log(data)
-                displayResults(data.meals)
+                if (data.meals) {
+                    displayResults(data.meals)
+                }
+                else {
+                    showError("No results found.")
+                }
             })
-        }
-        else {
-            alert("No Results Found") // switch alert to modal or return message
         }
     })
     .catch(function(error) {
-        alert("Error") // switch alerts to modals
+        showError(error)
 })
 }
 var displayResults = function(mealsArr) {
     for (var i = 0; i<mealsArr.length; i++) {
         listMeal(mealsArr[i])
     }
+}
+var showError = function(message) {
+    var errorEl = document.createElement("div");
+    errorEl.textContent = message
+    var deleteBtn = document.createElement('button')
+    deleteBtn.className = 'delete'
+    deleteBtn.id = 'notif-delete'
+    errorEl.appendChild(deleteBtn)
+    deleteBtn.addEventListener("click", errorEl.remove())
+    document.getElementById("home").appendChild(errorEl);
+    errorEl.classList.add("notication", "is-danger")
 }
 var listMeal = function(meal) {
     var mealEl = document.createElement('li');
@@ -118,7 +130,6 @@ var initModal = function() {
         modal.classList.remove('is-active')
     })
 }
-
 
 
 
