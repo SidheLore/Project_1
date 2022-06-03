@@ -9,42 +9,43 @@
     <link rel="stylesheet" href="./assets/css/bulma.min.css">
 </head>
 <body>
-    <header class="has-background-white px-4 py-5">
-        <h1 class="title is-size-1">
-            <a href="./index.html">Simple Shopper</a>
-        </h1>
-        <nav class="navbar has-shadow">
-            <!-- logo -->
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item">
-                    <img src="./assets/images/" alt="simple shopper logo" style="max-height: 65 px" class="px-2 py-2"> 
+              <a class="navbar-item" href="index.html">
+                <h1>Simple Shopper</h1>
+              </a>
+          
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+          
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-start">
+                <a class="navbar-item" href="index.html">
+                  Home
                 </a>
+          
+                <a class="navbar-item" href="my-meals.html">
+                  My Meals
+                </a>
+                <a class="navbar-item" href="grocery-list.html">
+                    Grocery List
+                </a> 
+              </div>
             </div>
-            <!-- nav bar -->
-            <div class="navbar-menu">
-            <ul class="navbar-end">
-                <li>
-                    <a href="./index.html">Home</a>
-                </li>
-                <li>
-                    <a href="./my-meals.html">My Meals</a>
-                </li>
-                <li>
-                    <a href="./grocery-list.html">Grocery List</a>
-                </li>
-            </ul>
+          </nav>
+    </header>
+        <section class="section">
+            <div class="box">
+                <h2 class="section-title is-size-4 has-text-centered">
+                    Grocery List
+                </h2>
+                <ul class="grocery-list"></ul>
             </div>
-        </nav>
-        </header>
-        <section class="section">
-            <h2 class="section-title is-size-4 has-text-centered">
-                Grocery List
-            </h2>
-        </section>
-        <section class="section">
-            <p>
-                List of ingredients, Text text text, delete button next to each ingredient, ability to change quantity, text text text
-            </p>
         </section>
     <footer>
         <div>
