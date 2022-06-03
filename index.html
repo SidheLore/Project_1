@@ -15,12 +15,6 @@
                   <a class="navbar-item" href="index.html">
                     <h1 class="title is-size-1">Simple Shopper</h1>
                   </a>
-              
-                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                  </a>
                 </div>
 
                 <!-- logo -->
@@ -30,8 +24,11 @@
                     </a>
                 </div>
               
+                <div id="navbarBasicExample" class="navbar-menu is-active">
+                  <div class="navbar-start">
                 <div id="navbarBasicExample" class="navbar-menu">
                   <div class="navbar-end">
+
                     <a class="navbar-item" href="index.html">
                       Home
                     </a>
@@ -70,25 +67,28 @@
                     Search for a Meal
                 </h2>
                 <div class="columns">
-                    <form class="column is-one-third mx-2" id="search">
-                        <div class="field">
-                            <label class="label">Search by</label>
-                            <div class="select">
-                                <select id="type-select">
-                                    <option value="category">category</option>
-                                    <option value="main-ingredient">main ingredient</option>
-                                    <option value="area">area</option>
-                                </select>
+                    <div class="column is-one-third mx-2" id="home">
+                        <form id="search">
+                            <div class="field">
+                                <label class="label">Search by</label>
+                                <div class="select">
+                                    <select id="type-select">
+                                        <option value="category">category</option>
+                                        <option value="main-ingredient">main ingredient</option>
+                                        <option value="area">area</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                        <label class="label">Enter a search term:</label>
-                        <div class="control">
-                            <input id='search-input' class="input" type="text" placeholder="e.g. seafood, vegetarian, etc">
-                        </div>
-                        </div>
-                        <button class="button is-primary" type="submit">Search</button>
-                    </form>
+                            <div class="field">
+                            <label class="label">Enter a search term:</label>
+                            <div class="control">
+                                <input id='search-input' class="input" type="text" placeholder="e.g. seafood, vegetarian, etc">
+                            </div>
+                            </div>
+                            <button class="button is-primary" type="submit">Search</button>
+                            <button class="button is-secondary" type="button">Clear</button>
+                        </form>
+                    </div>
                     <div class="column is-two-thirds mx-2">
                         <ul id="meal-list">
     
@@ -103,8 +103,7 @@
             </div>
         </footer>
 
-        <script type="text/javascript" src="./assets/js/all.js"></script>
-        <script type="text/javascript" src="./assets/js/script.js"></script>
+        
 
 
 
@@ -131,6 +130,11 @@
         </div>
         
         <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+
+    <script type="text/javascript" src="./assets/js/all.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
         
     </body>
 </html>
