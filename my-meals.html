@@ -10,29 +10,35 @@
 </head>
 <body>
     <header>
-        <h1>
-            <a href="./index.html">Simple Shopper</a>
-        </h1>
-        <nav>
-            <ul>
-                <li>
-                    <a href="./index.html">Home</a>
-                </li>
-                <li>
-                    <a href="./my-meals.html">My Meals</a>
-                </li>
-                <li>
-                    <a href="./grocery-list.html">Grocery List</a>
-                </li>
-            </ul>
-        </nav>
-        <section class="section banner">
-            <h2>
-                My Meals
-            </h2>
-        </section>
-        <section class="section"> 
-        </section>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="index.html">
+                <h1>Simple Shopper</h1>
+              </a>
+          
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+          
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-start">
+                <a class="navbar-item" href="index.html">
+                  Home
+                </a>
+          
+                <a class="navbar-item" href="my-meals.html">
+                  My Meals
+                </a>
+                <a class="navbar-item" href="grocery-list.html">
+                    Grocery List
+                </a> 
+              </div>
+            </div>
+          </nav>
+    </header>
     <footer>
         <div>
             © 2022 Simple Shopper Group
