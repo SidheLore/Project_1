@@ -10,6 +10,8 @@
 </head>
 <body>
     <header>
+
+        <!-- Navbar Section -->
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="index.html">
@@ -23,28 +25,78 @@
               </div>
             
             <div id="navbarBasicExample" class="navbar-menu">
-              <div class="navbar-start">
+            <div class="navbar-start">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Instructions
+                    </a>
+                    <div class="navbar-dropdown">
+                        <ul class="content instructions">
+                            <li>
+                                <p>
+                                    <strong>Step 1: </strong>Go to Search, choose a search category, enter a search term, and hit Search!
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <strong>Step 2: </strong>Look through the search results. If you like a meal, add it to My Meals!
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <strong>Step 3: </strong>Go to Home, check out your My Meals and auto-generated Grocery List!
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                  </div>
+            </div>
+              <div class="navbar-end">
                 <a class="navbar-item" href="index.html">
-                  Home
+                  Search
                 </a>
                 <a class="navbar-item" href="my-meals.html">
-                  My Meals
+                  Home
                 </a>
-                <a class="navbar-item" href="grocery-list.html">
-                    Grocery List
-                </a> 
               </div>
             </div>
           </nav>
+          <!-- Navbar Section End -->
+
     </header>
-    <main>
-        <section class="section my-meals">
-            <div class="box">
+    <main class="section">
+
+        <!-- Main Section -->
+        <section class="main">
+            <div class="box results">
+                <h2 class="section-title is-size-4 has-text-centered px-4 py-2">
+                    My Meals
+                </h2>
                 <ul id="my-meals-list">
 
                 </ul>
             </div>
-          </section>
+            <div class="box grocery is-one-third mx-2 search-section" id="home">
+                <h2 class="section-title is-size-4 has-text-centered px-4 py-2">
+                    Grocery List
+                </h2>
+                <table class="table is-striped is-fullwidth">
+                    <thead id="grocery-table">
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Preparation Notes</th>
+                        <th>Product</th>
+                        <th>Remove Item</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Main Section End -->
     </main>
    <section class="section is-small"></section>
     <footer class="section has-background-light">
@@ -57,7 +109,7 @@
 
 
 
-
+    <!-- Modal -->
     <div id="modal-js-example" class="modal">
         <div class="modal-background"></div>
         
@@ -67,18 +119,22 @@
                     <figure class="image is-128x128 meal-image">
                         <img src="" id="modal-img">
                     </figure>
-                    <p id="meal-desc" class="title is-4"></p>
+                    <h3 id="meal-desc"></h3>
                 </div>
                 <div class="meal-info">
                     <br>
                     <p><strong>Instructions: </strong></p>
                     <p id="meal-ins"></p>
+                    <p><strong>Ingredients:</strong></p>
+                    <ul id="ing-list" class="is-flex-direction-column"></ul>
                 </div>
             </div>
         </div>
         
         <button class="modal-close is-large" aria-label="close"></button>
-        </div>
+    </div>
+    <!-- Modal End -->
+    
     <script type="text/javascript" src="./assets/js/all.js"></script>
     <script type="text/javascript" src="./assets/js/mymeals.js"></script>
 </body>
