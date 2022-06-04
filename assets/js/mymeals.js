@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   });
 
+// Retrieves My Meals from local storage
 var getMyMeals = function() {
     var myMeals = localStorage.getItem('mymeals');
     if (myMeals) {
@@ -30,6 +31,7 @@ var getMyMeals = function() {
     }
 }
 
+// Lists all My Meals in the My Meals section
 var listMeal = function(meal, i) {
     var mealEl = document.createElement('li');
     mealEl.className = 'meal-item'
@@ -44,7 +46,6 @@ var listMeal = function(meal, i) {
     viewBtn.addEventListener("click", function(event) {
         event.stopPropagation()
         event.preventDefault()
-        console.log(meal)
         fillModal(meal)
     })
     rmvBtn.addEventListener('click', function(event) {
@@ -74,6 +75,7 @@ var listMeal = function(meal, i) {
 
 }
 
+// Fills the modal with meal information if the View Meal button is selected
 var fillModal = function(meal) {
     mealImg = meal.strMealThumb
     document.getElementById('modal-img').setAttribute('src', mealImg)
@@ -84,8 +86,10 @@ var fillModal = function(meal) {
     document.getElementById('meal-desc').textContent = mealDesc
     document.getElementById('meal-ins').textContent = mealIns
     initModal()
+    getIngredients(meal)
 }
 
+// Initializes the modal with the 'is-active' class
 var initModal = function() {
     var background = document.querySelector('.modal-background')
     var modalClose = document.querySelector('.modal-close')
@@ -100,4 +104,93 @@ var initModal = function() {
     })
 }
 
+// Finds the ingredients of a meal and sends them to the list ingredient function
+var getIngredients = function(newMeal) {
+    var ingredients = []
+    for (var i=1; i<=20;i++) {
+        var ing = newMeal['strMeasure' + i.toString()]
+        if (ing == "") {
+            break;
+        }
+        else {
+            var NewIngredient = ing + " " + newMeal['strIngredient' + i.toString()]
+            ingredients.push(NewIngredient)
+        }
+    }
+    for (var j = 0; j<ingredients.length; j++) {
+        listIngredient(ingredients[j])
+    }
+}
+
+// Lists ingredients on the presented modal
+var listIngredient = function(ingredient) {
+    var ingList = document.getElementById("ing-list")
+    var ingEl = document.createElement("li")
+    ingEl.textContent = ingredient
+    ingList.appendChild(ingEl)
+}
+
+// Gets the grocery list
+var getGroceries = function() {
+    var grocery = localStorage.getItem('grocery')
+    if (grocery) {
+        grocery = JSON.parse(grocery)
+        for (var i = 0; i<grocery.length; i++) {
+            listGrocery(grocery[i])
+        }
+    }
+}
+
+// Lists grocery items
+var listGrocery = function(item) {
+    var itemRow = document.createElement("tr")
+    itemRow.className = "item-row"
+
+    var quantity = document.createElement("td")
+    if (item.quantity != null) {
+        quantity.textContent = item.quantity
+    }
+    itemRow.appendChild(quantity)
+
+    var unit = document.createElement("td")
+    unit.textContent = item.unit
+    itemRow.appendChild(unit)
+
+    var preparationNotes = document.createElement("td")
+    preparationNotes.textContent = item.preparationNotes
+    itemRow.appendChild(preparationNotes)
+
+    var product = document.createElement("td")
+    product.textContent = item.product
+    itemRow.appendChild(product)
+
+    var removeEl = document.createElement("td")
+    var remove = document.createElement("button")
+    remove.textContent = "Remove Item"
+    remove.classList = "button is-danger";
+    remove.id = item.product
+    remove.addEventListener("click", function(event) {
+        event.stopPropagation();
+        event.preventDefault()
+        var list = JSON.parse(localStorage.getItem('grocery'))
+        for (var i = 0;i<list.length; i++) {
+            if (list[i].product == event.target.id) {
+                list.splice(i, 1)
+                break;
+            }
+        }
+        if (list.length == 0) {
+            localStorage.removeItem('grocery')
+        }
+        else {
+            localStorage.setItem('grocery', JSON.stringify(list))
+        }
+        event.target.closest('.item-row').remove()
+    })
+    removeEl.appendChild(remove)
+    itemRow.appendChild(removeEl)
+    document.getElementById("grocery-table").appendChild(itemRow)
+}
+
+getGroceries()
 getMyMeals()
