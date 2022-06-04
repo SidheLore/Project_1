@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="html">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,23 +12,18 @@
         <header>
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                  <a class="navbar-item" href="index.html">
-                    <h1 class="title is-size-1">Simple Shopper</h1>
-                  </a>
-                </div>
-
-                <!-- logo -->
-                <div class="navbar-brand">
-                    <a class="navbar-item">
-                        <img src="./assets/images/" alt="simple shopper logo" style="max-height: 65 px" class="px-2 py-2">
+                    <a class="navbar-item" href="index.html">
+                      <h1 class="title is-size-1">Simple Shopper</h1>
                     </a>
-                </div>
-              
-                <div id="navbarBasicExample" class="navbar-menu is-active">
-                  <div class="navbar-start">
+                      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                          <span aria-hidden="true"></span>
+                          <span aria-hidden="true"></span>
+                          <span aria-hidden="true"></span>
+                      </a>
+                  </div>
+                
                 <div id="navbarBasicExample" class="navbar-menu">
-                  <div class="navbar-end">
-
+                  <div class="navbar-start">
                     <a class="navbar-item" href="index.html">
                       Home
                     </a>
@@ -42,74 +37,52 @@
                 </div>
               </nav>
         </header>
-        <!-- Search for a Meal: Steps -->
-        <section class="section">
-            <div class="box">
-                <h3 class="steps is-size-5 px-4 py-2"> Instructions</h3>
-                <ol class="px-4 py-2">
-                    <li>
-                        Use the drop down menu to choose a category.
-                    </li>
-                    <li>
-                        Enter criteria.
-                    </li>
-                    <li>
-                        Click search!
-                    </li>
-                </ol> 
-                <p>
-                    View resulting meals and add your favorites to My Meals!
-                </p>
-            </div>
-        <section class="section search-section">
-            <div class="box">
-                <h2 class="section-title is-size-4 has-text-centered px-4 py-2">
-                    Search for a Meal
-                </h2>
-                <div class="columns">
-                    <div class="column is-one-third mx-2" id="home">
-                        <form id="search">
-                            <div class="field">
-                                <label class="label">Search by</label>
-                                <div class="select">
-                                    <select id="type-select">
-                                        <option value="category">category</option>
-                                        <option value="main-ingredient">main ingredient</option>
-                                        <option value="area">area</option>
-                                    </select>
-                                </div>
+       <main class="section">
+        <section>
+            <div class="main">
+                <div class="box is-one-third mx-2 search-section" id="home">
+                    <h2 class="section-title is-size-4 has-text-centered px-4 py-2">
+                        Search for a Meal
+                    </h2>
+                    <form id="search">
+                        <div class="field">
+                            <label class="label">Search by</label>
+                            <div class="select">
+                                <select id="type-select">
+                                    <option value="category">category</option>
+                                    <option value="main-ingredient">main ingredient</option>
+                                    <option value="area">area</option>
+                                </select>
                             </div>
-                            <div class="field">
-                            <label class="label">Enter a search term:</label>
-                            <div class="control">
-                                <input id='search-input' class="input" type="text" placeholder="e.g. seafood, vegetarian, etc">
-                            </div>
-                            </div>
-                            <button class="button is-primary" type="submit">Search</button>
-                            <button class="button is-secondary" type="button">Clear</button>
-                        </form>
-                    </div>
-                    <div class="column is-two-thirds mx-2">
-                        <ul id="meal-list">
-    
-                        </ul>
-                    </div>
+                        </div>
+                        <div class="field">
+                        <label class="label">Enter a search term:</label>
+                        <div class="control">
+                            <input id='search-input' class="input" type="text" placeholder="e.g. seafood, vegetarian, etc">
+                        </div>
+                        </div>
+                        <button class="button is-primary" type="submit">Search</button>
+                        <button class="button is-secondary" type="button" onclick="clearSearch()">Clear</button>
+                    </form>
+                </div>
+                <div class="box is-two-thirds mx-2 results">
+                    <h2 class="section-title is-size-4 has-text-centered px-4 py-2">
+                        Search Results
+                    </h2>
+                    <ul id="meal-list">
+
+                    </ul>
                 </div>
             </div>
+            
         </section>
-        <footer class="px-4 py-2">
-            <div>
+       </main>
+       <section class="section is-small"></section>
+        <footer class="section has-background-light">
+            <p class="content">
                 © 2022 Simple Shopper Group
-            </div>
+            </p>
         </footer>
-
-        
-
-
-
-
-
-
     <div id="modal-js-example" class="modal">
         <div class="modal-background"></div>
         
@@ -119,7 +92,7 @@
                     <figure class="image is-128x128 meal-image">
                         <img src="" id="modal-img">
                     </figure>
-                    <p id="meal-desc" class="title is-4"></p>
+                    <h3 id="meal-desc"></h3>
                 </div>
                 <div class="meal-info">
                     <br>
@@ -130,11 +103,11 @@
         </div>
         
         <button class="modal-close is-large" aria-label="close"></button>
-        </div>
+    </div>
 
 
     <script type="text/javascript" src="./assets/js/all.js"></script>
-    <script type="text/javascript" src="./assets/js/script.js"></script>
+    <script type="text/javascript" src="./assets/js/index.js"></script>
         
     </body>
 </html>

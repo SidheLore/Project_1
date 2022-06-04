@@ -1,5 +1,5 @@
 body {
-    background-color:#6FA8DC ;
+    height: 100vh;
 }
 .list-btn {
     margin: 0 4px;
@@ -19,4 +19,27 @@ body {
 }
 #search {
     height: 300px;
+}
+.html {
+    background-color:#6FA8DC;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    height: fit-content;
+    width: 100%;
+}
+.results {
+    overflow-y: auto;
+    height: 60vh;
+    width: 400px;
+}
+.search-section {
+    height: fit-content;
+    width: 400px;
+}
+.main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }

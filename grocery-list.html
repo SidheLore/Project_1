@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,55 +9,59 @@
     <link rel="stylesheet" href="./assets/css/bulma.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-              <a class="navbar-item" href="index.html">
-                <h1>Simple Shopper</h1>
-              </a>
-            </div>
-
-            <!-- logo -->
-            <div class="navbar-brand">
-                <a class="navbar-item">
-                    <img src="./assets/images/" alt="simple shopper logo" style="max-height: 65 px" class="px-2 py-2">
-                </a>
-            </div>
-          
-            <div id="navbarBasicExample" class="navbar-menu is-active">
-              <div class="navbar-start">
-                <a class="navbar-item" href="index.html">
-                  Home
-                </a>
-          
-                <a class="navbar-item" href="my-meals.html">
-                  My Meals
-                </a>
-                <a class="navbar-item" href="grocery-list.html">
-                    Grocery List
-                </a> 
-              </div>
-            </div>
-          </nav>
-    </header>
-    <main>
-        <section class="section">
-            <div class="box">
-                <h2 class="section-title is-size-4 has-text-centered">
-                    Grocery List
-                </h2>
-                <ul class="grocery-list"></ul>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div>
-            © 2022 Simple Shopper Group
+  <header>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+          <a class="navbar-item" href="index.html">
+            <h1 class="title is-size-1">Simple Shopper</h1>
+          </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-    </footer>
-
-
+      
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="index.html">
+            Home
+          </a>
+          <a class="navbar-item" href="my-meals.html">
+            My Meals
+          </a>
+          <a class="navbar-item" href="grocery-list.html">
+              Grocery List
+          </a> 
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="section is-large">
+      <div class="box">
+        <table class="table is-striped is-fullwidth">
+          <thead>
+            <tr>
+              <th>Quantity</th>
+              <th>Unit</th>
+              <th>Preparation Notes</th>
+              <th>Product</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+ <section class="section is-small"></section>
+  <footer class="section has-background-light">
+      <p class="content">
+          © 2022 Simple Shopper Group
+      </p>
+  </footer>
     <script type="text/javascript" src="./assets/js/all.js"></script>
-    <script type="text/javascript" src="./assets/js/script.js"></script>
+    <script type="text/javascript" src="./assets/js/grocery.js"></script>
 </body>
 </html>
