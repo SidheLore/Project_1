@@ -1,7 +1,30 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+  
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+  
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+  
+      });
+    });
+  
+  });
+
+
 var searchInputEl = document.getElementById('search-input')
 var selectTypeEl = document.getElementById('type-select')
 var searchForm = document.getElementById('search')
-myMeals = []
+
 var getMeals = function(input, type) {
     if (type == 'category') {
         url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + input;
@@ -60,37 +83,21 @@ var listMeal = function(meal) {
     var addBtn = document.createElement("button")
     addBtn.textContent = 'Add to My Meals'
     addBtn.classList = 'button list-btn is-primary js-modal-trigger'
+    addBtn.value = meal.idMeal
     var viewBtn = document.createElement('button');
     viewBtn.value = meal.idMeal
 
     viewBtn.addEventListener("click", function(event) {
         event.stopPropagation()
         event.preventDefault()
-        findMealById(viewBtn.value)
+        findMealById(viewBtn.value, "display")
     })
     addBtn.addEventListener('click', function(event) {
-        event.stopPropagation()
-        event.preventDefault()
-        var storedMeals = localStorage.getItem('mymeals');
-        if (!storedMeals) {
-            myMeals.push(meal)
-            localStorage.setItem('mymeals', JSON.stringify(myMeals))
-            displayMessage(meal.strMeal + " was added to My Meals!", "is-success")
-        }
-        else {
-            storedMeals = JSON.parse(storedMeals)
-            for (var i = 0; i<storedMeals.length; i++) {
-                if (storedMeals[i].strMeal == meal.strMeal) {
-                    displayMessage(meal.strMeal + ' is already a part of My Meals!', 'is-danger')
-                }
-                else { 
-                    storedMeals.push(meal)
-                    localStorage.setItem('mymeals', JSON.stringify(storedMeals))
-                    displayMessage(meal.strMeal + " was added to My Meals!", "is-success")
-                }
-            }
-        }
+        event.stopPropagation();
+        event.preventDefault();
+        findMealById(addBtn.value, "action")
     })
+    document.getElementById('meal-list').appendChild(mealEl)
 
     viewBtn.textContent = 'View Meal';
     viewBtn.classList = "button list-btn is-secondary js-modal-trigger";
@@ -99,17 +106,47 @@ var listMeal = function(meal) {
     mealEl.appendChild(mealDescription)
     mealEl.appendChild(viewBtn)
     mealEl.appendChild(addBtn)
-
-    document.getElementById('meal-list').appendChild(mealEl)
-
 }
 
-var findMealById = function(mealID) {
+async function addMeal(newMeal) {
+    var storedMeals = localStorage.getItem('mymeals');
+    if (!storedMeals) {
+        var myMeals = [newMeal]
+        localStorage.setItem('mymeals', JSON.stringify(myMeals))
+        displayMessage(newMeal.strMeal + " was added to My Meals!", "is-success")
+    }
+    else {
+        storedMeals = JSON.parse(storedMeals)
+        for (var i = 0; i<storedMeals.length; i++) {
+            if (storedMeals[i].strMeal == newMeal.strMeal) {
+                displayMessage(newMeal.strMeal + ' is already a part of My Meals!', 'is-danger')
+                return
+            }
+            else {
+                storedMeals.push(newMeal)
+                localStorage.setItem('mymeals', JSON.stringify(storedMeals))
+                displayMessage(newMeal.strMeal + " was added to My Meals!", "is-success")
+                return
+            }
+        }
+    }
+}
+
+
+
+
+var findMealById = function(mealID, action) {
     fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + mealID)
     .then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
-                fillModal(data.meals[0])
+                meal = data.meals[0]
+                if (action == 'display') {
+                    fillModal(meal)
+                }
+                else {
+                    addMeal(meal)
+                }
             })
         }
         else {
