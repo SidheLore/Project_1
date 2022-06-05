@@ -1,3 +1,4 @@
+// FROM BULMA: Adds navbar menu dropdown functionality 
 document.addEventListener('DOMContentLoaded', () => {
 
     // Get all "navbar-burger" elements
@@ -32,7 +33,7 @@ var getMyMeals = function() {
 }
 
 // Lists all My Meals in the My Meals section
-var listMeal = function(meal, i) {
+var listMeal = function(meal) {
     var mealEl = document.createElement('li');
     mealEl.className = 'meal-item'
     var mealDescription = document.createElement('p');
@@ -46,7 +47,7 @@ var listMeal = function(meal, i) {
     viewBtn.addEventListener("click", function(event) {
         event.stopPropagation()
         event.preventDefault()
-        fillModal(meal)
+        fillModal(meal, 'meal')
     })
     rmvBtn.addEventListener('click', function(event) {
         event.stopPropagation()
@@ -76,24 +77,92 @@ var listMeal = function(meal, i) {
 }
 
 // Fills the modal with meal information if the View Meal button is selected
-var fillModal = function(meal) {
-    mealImg = meal.strMealThumb
-    document.getElementById('modal-img').setAttribute('src', mealImg)
-    
-    mealDesc = meal.strMeal
-    mealIns = meal.strInstructions
-    
-    document.getElementById('meal-desc').textContent = mealDesc
-    document.getElementById('meal-ins').textContent = mealIns
-    initModal()
-    getIngredients(meal)
+var fillModal = function(object, action) {
+    if (action == 'meal') {
+        var mealImg = object.strMealThumb
+        document.getElementById('modal-img').setAttribute('src', mealImg)
+        
+        var mealDesc = object.strMeal
+        var mealIns = object.strInstructions
+        
+        document.getElementById('meal-desc').textContent = mealDesc
+        document.getElementById('meal-ins').textContent = mealIns
+        initModal('meal-modal');
+        getIngredients(object);
+    }
+    else {
+        if (action == 'edit') {
+            document.getElementById("quantity").value = object.quantity
+
+            document.getElementById("unit").value = object.unit
+
+            document.getElementById("prep-notes").value = object.preparationNotes
+
+            document.getElementById("product").value = object.product
+        }
+        else {
+            document.getElementById("quantity").value = null
+
+            document.getElementById("unit").value = null
+
+            document.getElementById("prep-notes").value = null
+
+            document.getElementById("product").value = null
+
+            document.getElementById("quantity").placeholder = object.quantity
+
+            document.getElementById("unit").placeholder = object.unit
+
+            document.getElementById("prep-notes").placeholder = object.preparationNotes
+
+            document.getElementById("product").placeholder = object.product
+        }
+
+        var saveBtn = document.getElementById("save-ingredient")
+        saveBtn.onclick = function(event) {
+            event.stopPropagation()
+            var updatedIngredient = {
+                quantity: document.getElementById("quantity").value,
+                unit: document.getElementById("unit").value,
+                preparationNotes: document.getElementById("prep-notes").value,
+                product: document.getElementById("product").value
+            }
+            if (action == 'edit') {
+                var groceries = localStorage.getItem('grocery')
+                groceries = JSON.parse(groceries)
+                var location = parseInt(saveBtn.name);
+                groceries[location] = updatedIngredient;
+                localStorage.setItem('grocery', JSON.stringify(groceries))
+                getGroceries()
+            }
+            else if (action == 'new') {
+                var groceries = localStorage.getItem('grocery')
+                if (groceries) {
+                    groceries = JSON.parse(groceries);
+                    var newItem = [];
+                    newItem.push(updatedIngredient)
+                    groceries = newItem.concat(groceries)
+                }
+                else {
+                    groceries = []
+                    groceries.push(updatedIngredient)
+                }
+                localStorage.setItem('grocery', JSON.stringify(groceries))
+                getGroceries()
+            }
+            document.getElementById('ingredient-modal').classList.remove('is-active')
+
+        }
+        initModal('ingredient-modal')
+
+    }
 }
 
 // Initializes the modal with the 'is-active' class
-var initModal = function() {
-    var background = document.querySelector('.modal-background')
-    var modalClose = document.querySelector('.modal-close')
-    var modal =document.querySelector('.modal')
+var initModal = function(modalID) {
+    var modal = document.getElementById(modalID)
+    var background = document.getElementById(modalID + '-background')
+    var modalClose = document.getElementById(modalID + '-close')
     modal.classList.add('is-active')
 
     modalClose.addEventListener("click", function() {
@@ -102,6 +171,11 @@ var initModal = function() {
     background.addEventListener("click", function() {
         modal.classList.remove('is-active')
     })
+    if (modalID == 'ingredient-modal') {
+        document.getElementById('cancel-ingredient').addEventListener("click", function() {
+            modal.classList.remove('is-active')
+        })
+    }
 }
 
 // Finds the ingredients of a meal and sends them to the list ingredient function
@@ -132,22 +206,43 @@ var listIngredient = function(ingredient) {
 
 // Gets the grocery list
 var getGroceries = function() {
+    var groceryTable = document.getElementById("grocery-table")
+    while (groceryTable.firstChild) {
+        groceryTable.firstChild.remove()
+    }
     var grocery = localStorage.getItem('grocery')
     if (grocery) {
         grocery = JSON.parse(grocery)
         for (var i = 0; i<grocery.length; i++) {
-            listGrocery(grocery[i])
+            listGrocery(grocery[i], i)
         }
     }
 }
 
 // Lists grocery items
-var listGrocery = function(item) {
+var listGrocery = function(item, i) {
     var itemRow = document.createElement("tr")
     itemRow.className = "item-row"
+    itemRow.id = i.toString()
 
+    var selectEl = document.createElement("td")
+    var select = document.createElement("input")
+    select.type = "checkbox"
+    select.id = 'check-' + i.toString();
+    select.className = 'select-ing'
+    selectEl.appendChild(select)
+    itemRow.appendChild(selectEl)
+    itemRow.onclick = function() {
+        if (select.checked) {
+            select.checked = false;
+        }
+        else {
+            select.checked = true;
+        }
+    }
+    
     var quantity = document.createElement("td")
-    if (item.quantity != null) {
+    if (item.quantity) {
         quantity.textContent = item.quantity
     }
     itemRow.appendChild(quantity)
@@ -164,9 +259,9 @@ var listGrocery = function(item) {
     product.textContent = item.product
     itemRow.appendChild(product)
 
-    var removeEl = document.createElement("td")
+    var actionsEl = document.createElement("td")
     var remove = document.createElement("button")
-    remove.textContent = "Remove Item"
+    remove.textContent = "Remove"
     remove.classList = "button is-danger";
     remove.id = item.product
     remove.addEventListener("click", function(event) {
@@ -187,9 +282,55 @@ var listGrocery = function(item) {
         }
         event.target.closest('.item-row').remove()
     })
-    removeEl.appendChild(remove)
-    itemRow.appendChild(removeEl)
+    actionsEl.appendChild(remove)
+
+    var editBtn = document.createElement("button")
+    editBtn.className = 'button'
+    editBtn.textContent = 'Edit'
+    editBtn.addEventListener("click", function(event) {
+        event.stopPropagation()
+        event.preventDefault()
+        document.getElementById('save-ingredient').name = i.toString()
+        fillModal(item, "edit")
+        initModal('ingredient-modal')
+    })
+    actionsEl.appendChild(editBtn);
+    
+
+    itemRow.appendChild(actionsEl)
     document.getElementById("grocery-table").appendChild(itemRow)
 }
+
+// Removes all selected ingredients
+var removeSelected = function() {
+    var groceries = JSON.parse(localStorage.getItem('grocery'))
+    var newGroceries = []
+    for (var i = 0; i<groceries.length;i++) {
+        if (!(document.getElementById('check-' + i.toString()).checked)) {
+            newGroceries.push(groceries[i])
+        }
+    }
+
+    if (newGroceries.length == 0) {
+        localStorage.removeItem('grocery')
+    }
+    else {
+        localStorage.setItem('grocery', JSON.stringify(newGroceries))
+    }
+    getGroceries()
+}
+
+document.getElementById('add-item').addEventListener('click',  function(event) {
+    event.stopPropagation()
+    event.preventDefault()
+    var object = {
+        quantity: 'Quantity',
+        unit: 'Unit',
+        preparationNotes: 'Preparation Notes',
+        product: 'Product'
+    }
+    fillModal(object, 'new')
+})
+
 getGroceries()
 getMyMeals()

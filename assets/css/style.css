@@ -50,3 +50,11 @@ footer {
 .instructions {
     padding: 8px;
 }
+.action-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.select-ing {
+    pointer-events: none;
+}
