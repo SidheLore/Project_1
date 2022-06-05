@@ -191,6 +191,5 @@ var listGrocery = function(item) {
     itemRow.appendChild(removeEl)
     document.getElementById("grocery-table").appendChild(itemRow)
 }
-
 getGroceries()
 getMyMeals()
