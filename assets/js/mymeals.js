@@ -1,3 +1,4 @@
+// FROM BULMA: Adds navbar menu dropdown functionality 
 document.addEventListener('DOMContentLoaded', () => {
 
     // Get all "navbar-burger" elements
@@ -300,6 +301,7 @@ var listGrocery = function(item, i) {
     document.getElementById("grocery-table").appendChild(itemRow)
 }
 
+// Removes all selected ingredients
 var removeSelected = function() {
     var groceries = JSON.parse(localStorage.getItem('grocery'))
     var newGroceries = []

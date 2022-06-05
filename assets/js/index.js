@@ -1,4 +1,4 @@
-// Adds navbar menu dropdown functionality 
+// FROM BULMA: Adds navbar menu dropdown functionality 
 document.addEventListener('DOMContentLoaded', () => {
 
     // Get all "navbar-burger" elements
