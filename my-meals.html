@@ -81,18 +81,26 @@
                     <h2 class="section-title is-size-4 has-text-centered px-4 py-2">
                         Grocery List
                     </h2>
+                    <div class="grocery-actions">
+
+                    </div>
+                    <div class="action-buttons">
+                        <button class="button" id="add-item">Add Grocery Item</button>
+                        <button class="button is-danger" onclick="removeSelected()">Remove Selected</button>
+                    </div>
                 </div>
                 <table class="table is-striped is-fullwidth">
-                    <thead id="grocery-table">
-                    <tr>
-                        <th>Quantity</th>
-                        <th>Unit</th>
-                        <th>Preparation Notes</th>
-                        <th>Product</th>
-                        <th>Remove Item</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Quantity</th>
+                            <th>Unit</th>
+                            <th>Preparation Notes</th>
+                            <th>Product</th>
+                            <th>Actions</th>
+                        </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="grocery-table">
                     </tbody>
                 </table>
             </div>
@@ -109,8 +117,8 @@
     <!-- Footer End-->
 
     <!-- Modal -->
-    <div id="modal-js-example" class="modal">
-        <div class="modal-background"></div>
+    <div id="meal-modal" class="modal">
+        <div class="modal-background" id="meal-modal-background"></div>
         
         <div class="modal-content">
             <div class="box">
@@ -130,7 +138,47 @@
             </div>
         </div>
         
-        <button class="modal-close is-large" aria-label="close"></button>
+        <button class="modal-close is-large" aria-label="close" id="meal-modal-close"></button>
+    </div>
+    <div id="ingredient-modal" class="modal">
+        <div class="modal-background" id="ingredient-modal-background"></div>
+        
+        <div class="modal-content">
+            <div class="box">
+                <table class="table is-striped is-fullwidth">
+                    <thead id="grocery-table-modal">
+                        <tr>
+                            <th>Quantity</th>
+                            <th>Unit</th>
+                            <th>Preparation Notes</th>
+                            <th>Product</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" class="input is-small" id="quantity">
+                            </td>
+                            <td>
+                                <input type="text" class="input is-small" id="unit">
+                            </td>
+                            <td>
+                                <input type="text" class="input is-small" id="prep-notes">
+                            </td>
+                            <td>
+                                <input type="text" class="input is-small" id="product">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="ingredient-modal-buttons">
+                    <button class="button is-success" id="save-ingredient">Save</button>
+                    <button class="button is-danger" id="cancel-ingredient">Cancel</button>
+                </div>
+            </div>
+        </div>
+        
+        <button class="modal-close is-large" aria-label="close" id="ingredient-modal-close"></button>
     </div>
     <!-- Modal End -->
     

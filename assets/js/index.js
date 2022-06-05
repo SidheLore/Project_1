@@ -98,6 +98,7 @@ var listMeal = function(meal) {
         event.stopPropagation();
         event.preventDefault();
         findMealById(addBtn.value, "action")
+        mealEl.remove()
     })
     document.getElementById('meal-list').appendChild(mealEl)
 
@@ -117,7 +118,6 @@ var addMeal = function(newMeal) {
         var myMeals = [newMeal]
         localStorage.setItem('mymeals', JSON.stringify(myMeals))
         displayMessage(newMeal.strMeal + " was added to My Meals!", "is-success")
-        document.getElementById(newMeal.idMeal).remove()
         getIngredients(newMeal, 'add')
     }
     else {
@@ -131,7 +131,6 @@ var addMeal = function(newMeal) {
                 storedMeals.push(newMeal)
                 localStorage.setItem('mymeals', JSON.stringify(storedMeals))
                 displayMessage(newMeal.strMeal + " was added to My Meals!", "is-success")
-                document.getElementById(newMeal.idMeal).parentElement.remove()
                 getIngredients(newMeal, 'add')
                 return
             }
