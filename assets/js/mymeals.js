@@ -53,7 +53,11 @@ var listMeal = function(meal) {
         event.stopPropagation()
         event.preventDefault()
         var storedMeals = JSON.parse(localStorage.getItem('mymeals'));
-        storedMeals.splice(i, 1)
+        for (var i = 0; i<storedMeals.length; i++) {
+            if (storedMeals[i].idMeal == meal.idMeal) {
+                storedMeals.splice(i, 1)
+            }
+        }
         if (storedMeals.length == 0) {
             localStorage.removeItem('mymeals')
         }
